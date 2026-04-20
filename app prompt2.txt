@@ -1,0 +1,57 @@
+The Master Build Prompt (Version 2.0 - API Integrated)
+Role: Senior Full-Stack Engineer and Biometric Security Expert.
+Task: Build a high-fidelity Class Attendance Mobile App using Flutter (Frontend) and Firebase (Backend).
+
+1. Authentication & Lecturer Role
+Implement Firebase Auth (Documentation) for lecturers.
+
+UI: A clean, modern login screen with a school logo.
+
+Lecturers must be able to sign in to access their specific assigned units.
+
+2. Facial Recognition Architecture (Cloud-Based)
+Capture: Use the Flutter camera package (Pub.dev) to allow switching between front and back cameras.
+
+Liveness Detection: Integrate Google ML Kit Face Detection (Documentation) to ensure a real human is present before sending the frame to the cloud.
+
+Processing: Send the captured frame to a Firebase Cloud Function (Python 3.11+) (Documentation).
+
+Logic: * Use the face_recognition library (GitHub) in the Cloud Function to generate a 128-d facial embedding.
+
+Enrollment: If student ID is provided (first-time scan), store the embedding array in the Cloud Firestore students collection.
+
+Verification: Compare the new scan's embedding against the database using Euclidean distance calculations.
+
+3. Firestore Database Schema & Logic
+Database: Cloud Firestore (Documentation).
+
+Collections:
+
+students: {student_id, full_name, face_embedding (array), created_at}
+
+units: {course_code, unit_name, lecturer_uid}
+
+attendance_sessions: {session_id, course_code, date, lecturer_id, timestamp}
+
+attendance_sessions/{session_id}/present_students: {student_id, timestamp}
+
+Constraint: Implement a check to prevent duplicate attendance. A student ID can only be added to a specific session_id/present_students sub-collection once. If scanned again in the same session, show an "Already Marked" visual alert.
+
+4. Security & Forensics Features
+Data Privacy: Encrypt the face_embedding at rest. Ensure the raw image is never stored permanently in Firebase Storage (Documentation)—only the mathematical hash.
+
+Integrity: Use Firestore Security Rules (Documentation) to ensure only the authenticated lecturer UID can create or update sessions.
+
+5. UI/UX & Reporting
+Dashboard: A grid-view of assigned units for the lecturer.
+
+Scanning Interface: A professional camera overlay with a "scanning" animation. Display student details in a bottom sheet immediately upon a successful match.
+
+Reporting: On the session history page, add a "Generate Register" button. Use the pdf package (Pub.dev) to create a formatted PDF containing the Course Title, Code, Lecturer Name, and a table of all present students with their IDs and timestamps.
+
+6. Tech Stack Requirements
+Frontend: Dart (Flutter).
+
+Backend: Firebase (Auth, Firestore, Cloud Functions).
+
+Styling: Use a "Modern Academic" aesthetic—deep blues, whites, and subtle shadows.

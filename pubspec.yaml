@@ -1,0 +1,75 @@
+name: uso_id
+description: Campus Management SaaS - Facial Recognition Attendance, Analytics & Course Registration
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Firebase
+  firebase_core: ^3.8.0
+  firebase_auth: ^5.3.0
+  cloud_firestore: ^5.5.0
+  cloud_functions: ^5.2.0
+
+  # Camera & ML
+  camera: ^0.11.0
+  google_mlkit_face_detection: ^0.12.0
+  image: ^4.3.0
+
+  # State Management
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
+
+  # Navigation
+  go_router: ^14.6.0
+
+  # UI & Charts
+  fl_chart: ^0.69.0
+  flutter_animate: ^4.5.0
+  google_fonts: ^6.2.1
+
+  # PDF & Export
+  pdf: ^3.11.1
+  printing: ^5.13.3
+
+  # Offline Storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
+  # Utilities
+  csv: ^6.0.0
+  file_picker: ^8.1.3
+  uuid: ^4.5.1
+  intl: ^0.19.0
+  path_provider: ^2.1.4
+  permission_handler: ^11.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.13
+  riverpod_generator: ^2.6.1
+  hive_generator: ^2.0.1
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+
+  fonts:
+    - family: Outfit
+      fonts:
+        - asset: assets/fonts/Outfit-Regular.ttf
+        - asset: assets/fonts/Outfit-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Outfit-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Outfit-Bold.ttf
+          weight: 700
